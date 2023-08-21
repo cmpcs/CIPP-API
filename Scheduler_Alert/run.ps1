@@ -91,7 +91,7 @@ try {
                     }
                 }
                 else {
-                    Write-LogMessage -message "Potentially using Duo for MFA, could not check MFA status for Admins with 100% accuracy" -API 'Alerts' -tenant $tenant.tenant -sev Info
+                    Write-LogMessage -message "Potentially using Duo for MFA, could not check MFA status for Admins with 100% accuracy" -API 'MFA Alerts - Informational' -tenant $tenant.tenant -sev Info
 
                 }
             }
@@ -169,7 +169,7 @@ try {
         }
         { $_.'ExpiringLicenses' -eq $true } {
             try {
-                Get-CIPPLicenseOverview -TenantFilter $Tenant.tenant | Where-Object -Property TimeUntilRenew -LT 31 | ForEach-Object {
+                Get-CIPPLicenseOverview -TenantFilter $Tenant.tenant | Where-Object -Property TimeUntilRenew -LT 29 | ForEach-Object {
                     "$($_.License) will expire in $($_.TimeUntilRenew) days" 
                 }
             }
